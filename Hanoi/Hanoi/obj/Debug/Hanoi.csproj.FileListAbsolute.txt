@@ -7,3 +7,9 @@ A:\Projekte\Hanoi\Hanoi\obj\Debug\Hanoi.pdb
 A:\Projekte\Teaching\Hanoi\Hanoi\bin\Debug\Hanoi.exe.config
 A:\Projekte\Teaching\Hanoi\Hanoi\obj\Debug\Hanoi.exe
 A:\Projekte\Teaching\Hanoi\Hanoi\obj\Debug\Hanoi.pdb
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\bin\Debug\Hanoi.exe.config
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\obj\Debug\Hanoi.exe
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\obj\Debug\Hanoi.pdb
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\bin\Debug\Hanoi.exe
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\bin\Debug\Hanoi.pdb
+A:\Projekte\Visual 2015\Teaching\Hanoi\Hanoi\obj\Debug\Hanoi.csprojResolveAssemblyReference.cache
