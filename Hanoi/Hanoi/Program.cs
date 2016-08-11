@@ -9,12 +9,12 @@ namespace Hanoi
     class Program
     {
         static int diskCount = 7;
+        static int[] stickA = new int[diskCount];
+        static int[] stickB = new int[diskCount];
+        static int[] stickC = new int[diskCount];
 
         static void Main(string[] args)
-        {
-            int[] stickA = new int[diskCount];
-            int[] stickB = new int[diskCount];
-            int[] stickC = new int[diskCount];
+        {           
 
             //stickC[7] = 3;
             int loops = 0;
@@ -22,33 +22,68 @@ namespace Hanoi
             while (loops < diskCount)
             {
 
-                if(diskCount - loops != 3 && diskCount - loops != 4)
+                if (diskCount - loops != 3 && diskCount - loops != 4)
                 {
                     Gravity(stickA, diskCount - loops);
                 }
                 loops++;
             }
+
+            DrawSticks(stickA, stickB, stickC);
+            Sticks source = Sticks.A;
+
+
             DrawSticks(stickA, stickB, stickC);
             while (true) // GamingLoop
             {
-
                 ConsoleKeyInfo s = Console.ReadKey();
-                Console.Clear();
-                DrawSticks(stickA, stickB, stickC);
                 Console.ForegroundColor = ConsoleColor.White;
-                if (s.Key == ConsoleKey.D1)
+
+                Console.Clear();
+
+                switch (s.Key)
                 {
-                    Console.WriteLine("You have selected the first tower");
+                    case ConsoleKey.D1:
+                        Console.WriteLine("You have selected the first tower");
+                        source = Sticks.A;
+                        break;
+                    case ConsoleKey.D2:
+                        Console.WriteLine("You have selected the second tower");
+                        source = Sticks.B;
+                        break;
+                    case ConsoleKey.D3:
+                        Console.WriteLine("You have selected the third tower");
+                        source = Sticks.C;
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        Console.WriteLine("You have pushed the left Arrow");
+                        MoveDisk(EnumToArray(source), EnumToArray(source - 1));
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Console.WriteLine("You have pushed the right Arrow");
+                        MoveDisk(EnumToArray(source), EnumToArray(source + 1));
+                        break;
+                    default:
+                        Console.WriteLine("Nespresso what else");
+                        break;
                 }
-                else if(s.Key == ConsoleKey.D2)
+
+                DrawSticks(stickA, stickB, stickC);
+            }
+        }
+
+        static void MoveDisk(int[] stickSource, int[] stickTarget)
+        {
+            for (int i = 0; i < stickSource.Length; i++)
+            {
+                if (stickSource[i] > 0)
                 {
-                    Console.WriteLine("You have selected the second tower");
-                }
-                else if (s.Key == ConsoleKey.D3)
-                {
-                    Console.WriteLine("You have selected the third tower");
+                    Gravity(stickTarget, stickSource[i]);
+                    stickSource[i] = 0;
+                    break;
                 }
             }
+
         }
 
         static void DrawSticks(int[] stickA, int[] stickB, int[] stickC)
@@ -78,9 +113,10 @@ namespace Hanoi
 
         static void Gravity(int[] stick, int disc)
         {
-            if (stick[stick.Length-1] == 0)
+            
+            if (stick[stick.Length - 1] == 0)
             {
-                stick[stick.Length-1] = disc;
+                stick[stick.Length - 1] = disc;
             }
             else
             {
@@ -94,5 +130,46 @@ namespace Hanoi
                 }
             }
         }
+
+        static int[] EnumToArray(Sticks sticks)
+        {
+            sticks = ValidateSticks((int)sticks);
+            switch (sticks)
+            {
+                case Sticks.A:
+                    return stickA;
+                case Sticks.B:
+                    return stickB;
+                case Sticks.C:
+                    return stickC;
+                default:
+                    return new int[0];
+            }
+        }
+
+        static Sticks ValidateSticks(int stick)
+        {
+            int last = Enum.GetValues(typeof(Sticks)).Cast<int>().Last();
+            int first = Enum.GetValues(typeof(Sticks)).Cast<int>().First();
+
+            if (stick < first)
+            {
+                return (Sticks)last;
+            }
+            else if (last < stick)
+            {
+                return (Sticks)first;
+            }
+
+            return (Sticks)stick;
+        }
+
+    }
+
+    public enum Sticks
+    {
+        A,
+        B,
+        C
     }
 }

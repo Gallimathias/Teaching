@@ -1,0 +1,8 @@
+﻿################################################################################
+# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+
+/Hanoi/.vs/Hanoi/v14/.suo
+/Hanoi/Hanoi/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Hanoi/Hanoi/obj/Debug/Hanoi.csprojResolveAssemblyReference.cache
+/Hanoi/Hanoi/obj/Debug/Hanoi.pdb
